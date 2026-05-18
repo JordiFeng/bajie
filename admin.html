@@ -210,7 +210,7 @@ async function saveToGithub() {
     unescape(encodeURIComponent(JSON.stringify(data, null, 2)))
   );
 
-  await fetch(
+  const res = await fetch(
     `https://api.github.com/repos/${owner}/${repo}/contents/products.json`,
     {
       method: "PUT",
@@ -221,13 +221,21 @@ async function saveToGithub() {
       body: JSON.stringify({
         message: "update products",
         content,
-        sha
+        sha,
+        branch
       })
     }
   );
 
-  alert("保存成功，已同步 GitHub");
-  loadProducts();
+  const result = await res.json();
+  console.log(result);
+
+  if (res.ok) {
+    alert("保存成功");
+    loadProducts();
+  } else {
+    alert("保存失败：" + result.message);
+  }
 }
 
 loadProducts();
