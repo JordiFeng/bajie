@@ -3,13 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
-<title>商品后台</title>
+<title>商品后台管理</title>
 
 <style>
 body {
   margin: 0;
   background: #f5f5f5;
   font-family: Arial, sans-serif;
+  padding-bottom: 100px;
 }
 
 .header {
@@ -76,10 +77,25 @@ body {
   z-index: 20;
 }
 
+.sync-btn {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 20px;
+  z-index: 20;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: #000;
+  color: white;
+  font-size: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.15);
+}
+
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.4);
+  background: rgba(0,0,0,.45);
   display: none;
   align-items: center;
   justify-content: center;
@@ -121,26 +137,32 @@ input, textarea, select {
 
 <button class="fab" onclick="openModal()">+</button>
 
-<div class="list" id="productList"></div>
+<div class="list">
+
+  <div class="card">
+    <div class="name">GitHub Token</div>
+    <input id="token" placeholder="请输入 GitHub Token" />
+  </div>
+
+  <div id="productList"></div>
+</div>
+
+<button class="sync-btn" onclick="saveToGithub()">
+  保存同步 GitHub
+</button>
 
 <div class="modal" id="modal">
   <div class="modal-content">
     <h3>新增商品</h3>
 
-    <select id="category">
-      <option value="aj1">乔一</option>
-      <option value="onitsuka">鬼冢虎</option>
-      <option value="shell">贝壳头</option>
-      <option value="airforce">空军</option>
-    </select>
+    <select id="category"></select>
 
     <input id="name" placeholder="商品名称" />
     <textarea id="desc" placeholder="商品描述"></textarea>
+
     <input id="imageFile" type="file" accept="image/*" />
 
-    <input id="token" placeholder="GitHub Token" />
-
-    <button class="save-btn" onclick="addProduct()">保存商品</button>
+    <button class="save-btn" onclick="addProduct()">新增商品</button>
     <button class="save-btn" onclick="closeModal()">取消</button>
   </div>
 </div>
@@ -166,7 +188,21 @@ async function loadProducts() {
   );
 
   data = JSON.parse(content);
+
+  renderCategory();
   renderProducts();
+}
+
+function renderCategory() {
+  const select = document.getElementById("category");
+  select.innerHTML = "";
+
+  data.categories.forEach(item => {
+    const option = document.createElement("option");
+    option.value = item.id;
+    option.innerText = item.name;
+    select.appendChild(option);
+  });
 }
 
 function renderProducts() {
@@ -181,7 +217,7 @@ function renderProducts() {
       div.innerHTML = `
         <div class="name">${item.name}</div>
         <div class="desc">${item.desc || ""}</div>
-        <img src="${item.image}" />
+        <img src="${item.image}?t=${Date.now()}" />
         <button class="delete-btn" onclick="deleteProduct('${category}', ${index})">
           删除
         </button>
@@ -202,7 +238,7 @@ function closeModal() {
 
 function deleteProduct(category, index) {
   data.products[category].splice(index, 1);
-  saveToGithub();
+  renderProducts();
 }
 
 function fileToBase64(file) {
@@ -243,6 +279,11 @@ async function addProduct() {
   const desc = document.getElementById("desc").value;
   const file = document.getElementById("imageFile").files[0];
 
+  if (!token) {
+    alert("请先输入 GitHub Token");
+    return;
+  }
+
   let image = "";
 
   if (file) {
@@ -262,19 +303,26 @@ async function addProduct() {
 
   data.products[category].push(product);
 
-  await saveToGithub();
+  renderProducts();
   closeModal();
+
+  alert("商品已添加，请点击底部按钮保存同步 GitHub");
 }
 
 async function saveToGithub() {
   const token = document.getElementById("token").value;
 
+  if (!token) {
+    alert("请输入 GitHub Token");
+    return;
+  }
+
   const content = btoa(
     unescape(encodeURIComponent(JSON.stringify(data, null, 2)))
   );
 
-  await fetch(
-    `https://api.github.com/repos/${owner}/${repo}/contents/products.json?t=${Date.now()}`,
+  const res = await fetch(
+    `https://api.github.com/repos/${owner}/${repo}/contents/products.json`,
     {
       method: "PUT",
       headers: {
@@ -290,8 +338,14 @@ async function saveToGithub() {
     }
   );
 
-  alert("保存成功");
-  loadProducts();
+  const result = await res.json();
+
+  if (res.ok) {
+    alert("保存成功，已同步 GitHub");
+    loadProducts();
+  } else {
+    alert("保存失败：" + result.message);
+  }
 }
 
 loadProducts();
