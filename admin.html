@@ -6,77 +6,145 @@
 <title>商品后台管理</title>
 
 <style>
+/* ---------- 样式保持苹果风格 ---------- */
 body {
   margin: 0;
-  background: #f5f5f5;
-  font-family: Arial, sans-serif;
-  padding-bottom: 100px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: #f2f2f7;
+  color: #1c1c1e;
+  padding-bottom: 130px;
 }
-
 .header {
   background: #fff;
   padding: 16px;
   font-size: 20px;
-  font-weight: bold;
+  font-weight: 600;
   position: sticky;
   top: 0;
   z-index: 10;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #e5e5ea;
+  display: flex;
+  gap: 16px;
 }
-
-.list {
-  padding: 12px;
+.header .tab {
+  cursor: pointer;
+  padding: 6px 16px;
+  border-radius: 12px;
+  background: #f2f2f7;
+  font-weight: 500;
+  transition: background 0.2s;
 }
-
+.header .tab.active {
+  background: #007aff;
+  color: #fff;
+}
+.list { padding: 16px; }
 .card {
   background: #fff;
-  border-radius: 14px;
-  padding: 12px;
-  margin-bottom: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-
-.card img {
-  width: 100%;
-  border-radius: 10px;
-  margin-top: 8px;
-}
-
-.name {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.desc {
-  font-size: 13px;
-  color: #666;
-  margin-top: 6px;
-}
-
+.card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.12);}
+.card img { width: 100%; border-radius: 12px; margin-top: 8px;}
+.name { font-size: 16px; font-weight: 600; }
+.desc { font-size: 14px; color: #3c3c43; margin-top: 6px; flex: 1;}
 .delete-btn {
-  margin-top: 10px;
-  width: 100%;
-  padding: 10px;
+  margin-left: 12px;
+  padding: 6px 12px;
   border: none;
-  border-radius: 8px;
-  background: #ff4d4f;
+  border-radius: 12px;
+  background: #ff3b30;
   color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
 }
-
+.delete-btn:hover { background: #e03127; }
 .fab {
   position: fixed;
   right: 16px;
   top: 16px;
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  background: #000;
+  background: #007aff;
   color: white;
   font-size: 28px;
   border: none;
   z-index: 20;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
 }
-
+.fab:hover { transform: scale(1.05);}
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 30;
+}
+.modal-content {
+  background: #ffffff;
+  width: 90%;
+  max-width: 420px;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  animation: fadeIn 0.2s ease-out;
+}
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(-10px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+input, textarea, select {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  border-radius: 12px;
+  border: 1px solid #d1d1d6;
+  box-sizing: border-box;
+  font-size: 14px;
+  background: #f2f2f7;
+}
+textarea { min-height: 80px; resize: vertical; }
+.save-btn {
+  width: 100%;
+  padding: 14px;
+  margin-top: 16px;
+  border: none;
+  border-radius: 16px;
+  background: #007aff;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.save-btn:hover { background: #005bb5; }
+#tokenContainer {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 80px; 
+  z-index: 25;
+}
+#tokenContainer input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid #d1d1d6;
+  box-sizing: border-box;
+  font-size: 14px;
+  background: #f2f2f7;
+}
 .sync-btn {
   position: fixed;
   left: 16px;
@@ -85,267 +153,118 @@ body {
   z-index: 20;
   padding: 14px;
   border: none;
-  border-radius: 12px;
-  background: #000;
-  color: white;
-  font-size: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,.15);
-}
-
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.45);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 30;
-}
-
-.modal-content {
-  background: white;
-  width: 90%;
-  max-width: 420px;
   border-radius: 16px;
-  padding: 16px;
-}
-
-input, textarea, select {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  box-sizing: border-box;
-}
-
-.save-btn {
-  width: 100%;
-  padding: 12px;
-  margin-top: 14px;
-  border: none;
-  border-radius: 8px;
-  background: #000;
+  background: #34c759;
   color: white;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  transition: background 0.2s;
 }
+.sync-btn:hover { background: #28a745;}
 </style>
 </head>
 
 <body>
 
-<div class="header">商品管理</div>
-
-<button class="fab" onclick="openModal()">+</button>
-
-<div class="list">
-
-  <div class="card">
-    <div class="name">GitHub Token</div>
-    <input id="token" placeholder="请输入 GitHub Token" />
-  </div>
-
-  <div id="productList"></div>
+<div class="header">
+  <span class="tab active" onclick="showTab('products')">商品管理</span>
+  <span class="tab" onclick="showTab('categories')">分类管理</span>
 </div>
 
-<button class="sync-btn" onclick="saveToGithub()">
-  保存同步 GitHub
-</button>
+<div class="list" id="productTab"><div id="productList"></div></div>
+<div class="list" id="categoryTab" style="display:none;"><div id="categoryList"></div></div>
 
+<!-- 弹窗 -->
 <div class="modal" id="modal">
   <div class="modal-content">
     <h3>新增商品</h3>
-
     <select id="category"></select>
-
     <input id="name" placeholder="商品名称" />
     <textarea id="desc" placeholder="商品描述"></textarea>
-
     <input id="imageFile" type="file" accept="image/*" />
-
     <button class="save-btn" onclick="addProduct()">新增商品</button>
     <button class="save-btn" onclick="closeModal()">取消</button>
   </div>
 </div>
+<div class="modal" id="categoryModal">
+  <div class="modal-content">
+    <h3>新增分类</h3>
+    <input id="newCategoryName" placeholder="分类名称" />
+    <button class="save-btn" onclick="addCategory()">新增分类</button>
+    <button class="save-btn" onclick="closeCategoryModal()">取消</button>
+  </div>
+</div>
+
+<button class="fab" onclick="fabClick()">+</button>
+<div id="tokenContainer"><input id="token" placeholder="请输入 GitHub Token" /></div>
+<button class="sync-btn" onclick="saveToGithub()">保存同步 GitHub</button>
 
 <script>
-const owner = "jordifeng";
-const repo = "bajie";
-const branch = "main";
+// ---------- JS 功能完整版 ----------
+const owner="jordifeng", repo="bajie", branch="main"; let data={}, sha="";
 
-let data = {};
-let sha = "";
-
-async function loadProducts() {
-  const res = await fetch(
-    `https://api.github.com/repos/${owner}/${repo}/contents/products.json?t=${Date.now()}`
-  );
-
-  const result = await res.json();
-  sha = result.sha;
-
-  const content = decodeURIComponent(
-    escape(atob(result.content.replace(/\n/g, "")))
-  );
-
-  data = JSON.parse(content);
-
-  renderCategory();
-  renderProducts();
+// 加载 JSON
+async function loadProducts(){
+  const res=await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/products.json?t=${Date.now()}`);
+  const result=await res.json();
+  sha=result.sha;
+  data=JSON.parse(decodeURIComponent(escape(atob(result.content.replace(/\n/g,"")))));
+  renderCategory(); renderProducts();
 }
 
-function renderCategory() {
-  const select = document.getElementById("category");
-  select.innerHTML = "";
-
-  data.categories.forEach(item => {
-    const option = document.createElement("option");
-    option.value = item.id;
-    option.innerText = item.name;
-    select.appendChild(option);
-  });
+// 渲染商品下拉
+function renderCategory(){
+  const select=document.getElementById("category"); select.innerHTML="";
+  data.categories.forEach(item=>{const option=document.createElement("option"); option.value=item.id; option.innerText=item.name; select.appendChild(option);});
 }
 
-function renderProducts() {
-  const container = document.getElementById("productList");
-  container.innerHTML = "";
-
-  Object.keys(data.products).forEach(category => {
-    data.products[category].forEach((item, index) => {
-      const div = document.createElement("div");
-      div.className = "card";
-
-      div.innerHTML = `
-        <div class="name">${item.name}</div>
-        <div class="desc">${item.desc || ""}</div>
-        <img src="${item.image}?t=${Date.now()}" />
-        <button class="delete-btn" onclick="deleteProduct('${category}', ${index})">
-          删除
-        </button>
-      `;
-
+// 商品
+function renderProducts(){
+  const container=document.getElementById("productList"); container.innerHTML="";
+  Object.keys(data.products).forEach(category=>{
+    data.products[category].forEach((item,index)=>{
+      const div=document.createElement("div"); div.className="card";
+      div.innerHTML=`<div class="desc"><div class="name">${item.name}</div><div>${item.desc||""}</div><img src="${item.image}?t=${Date.now()}"/></div>
+      <button class="delete-btn" onclick="deleteProduct('${category}',${index})">删除</button>`;
       container.appendChild(div);
     });
   });
 }
+function openModal(){const modal=document.getElementById("modal"); modal.style.display="flex"; modal.addEventListener('click',e=>{if(e.target===modal) closeModal();});}
+function closeModal(){document.getElementById("modal").style.display="none";}
+function deleteProduct(category,index){data.products[category].splice(index,1); renderProducts();}
+function fileToBase64(file){return new Promise(resolve=>{const reader=new FileReader(); reader.onload=()=>resolve(reader.result.split(",")[1]); reader.readAsDataURL(file);});}
+async function uploadImage(file, token){const base64=await fileToBase64(file); const fileName=`images/${Date.now()}-${file.name}`;
+await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${fileName}`, {method:"PUT", headers:{Authorization:`Bearer ${token}`,"Content-Type":"application/json"}, body:JSON.stringify({message:"upload image", content:base64, branch})});
+return `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${fileName}`;}
+async function addProduct(){const token=document.getElementById("token").value; const category=document.getElementById("category").value;
+const name=document.getElementById("name").value; const desc=document.getElementById("desc").value; const file=document.getElementById("imageFile").files[0];
+if(!token){alert("请先输入 GitHub Token"); return;} let image=file?await uploadImage(file,token):""; const product={id:"p-"+Date.now(), name, desc, image};
+if(!data.products[category]) data.products[category]=[]; data.products[category].push(product); renderProducts(); closeModal(); alert("商品已添加，请点击保存同步 GitHub");}
 
-function openModal() {
-  document.getElementById("modal").style.display = "flex";
+// 分类
+function showTab(tab){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  if(tab==='products'){document.getElementById('productTab').style.display='block'; document.getElementById('categoryTab').style.display='none'; document.querySelector('.tab[onclick="showTab(\'products\')"]').classList.add('active');}
+  else{document.getElementById('productTab').style.display='none'; document.getElementById('categoryTab').style.display='block'; document.querySelector('.tab[onclick="showTab(\'categories\')"]').classList.add('active'); renderCategoryList();}
 }
+function renderCategoryList(){const container=document.getElementById('categoryList'); container.innerHTML=''; data.categories.forEach((item,index)=>{const div=document.createElement('div'); div.className='card'; div.innerHTML=`<div class="name">${item.name}</div><button class="delete-btn" onclick="deleteCategory(${index})">删除</button>`; container.appendChild(div);});}
+function openCategoryModal(){const modal=document.getElementById('categoryModal'); modal.style.display='flex'; modal.addEventListener('click',e=>{if(e.target===modal) closeCategoryModal();});}
+function closeCategoryModal(){document.getElementById('categoryModal').style.display='none';}
+function addCategory(){const name=document.getElementById('newCategoryName').value.trim(); if(!name){alert("请输入分类名称"); return;}
+const newCategory={id:"c-"+Date.now(), name}; data.categories.push(newCategory); renderCategoryList(); renderCategory(); closeCategoryModal(); alert("分类已添加，请点击保存同步 GitHub");}
+function deleteCategory(index){if(confirm("确定要删除这个分类吗？")){data.categories.splice(index,1); renderCategoryList(); renderCategory(); alert("分类已删除，请点击保存同步 GitHub");}}
 
-function closeModal() {
-  document.getElementById("modal").style.display = "none";
-}
+// FAB
+function fabClick(){const currentTab=document.querySelector('.tab.active').getAttribute('onclick').match(/'(\w+)'/)[1]; if(currentTab==='products') openModal(); else openCategoryModal();}
 
-function deleteProduct(category, index) {
-  data.products[category].splice(index, 1);
-  renderProducts();
-}
-
-function fileToBase64(file) {
-  return new Promise(resolve => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result.split(",")[1]);
-    reader.readAsDataURL(file);
-  });
-}
-
-async function uploadImage(file, token) {
-  const base64 = await fileToBase64(file);
-  const fileName = `images/${Date.now()}-${file.name}`;
-
-  await fetch(
-    `https://api.github.com/repos/${owner}/${repo}/contents/${fileName}`,
-    {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        message: "upload image",
-        content: base64,
-        branch
-      })
-    }
-  );
-
-  return `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${fileName}`;
-}
-
-async function addProduct() {
-  const token = document.getElementById("token").value;
-  const category = document.getElementById("category").value;
-  const name = document.getElementById("name").value;
-  const desc = document.getElementById("desc").value;
-  const file = document.getElementById("imageFile").files[0];
-
-  if (!token) {
-    alert("请先输入 GitHub Token");
-    return;
-  }
-
-  let image = "";
-
-  if (file) {
-    image = await uploadImage(file, token);
-  }
-
-  const product = {
-    id: "p-" + Date.now(),
-    name,
-    desc,
-    image
-  };
-
-  if (!data.products[category]) {
-    data.products[category] = [];
-  }
-
-  data.products[category].push(product);
-
-  renderProducts();
-  closeModal();
-
-  alert("商品已添加，请点击底部按钮保存同步 GitHub");
-}
-
-async function saveToGithub() {
-  const token = document.getElementById("token").value;
-
-  if (!token) {
-    alert("请输入 GitHub Token");
-    return;
-  }
-
-  const content = btoa(
-    unescape(encodeURIComponent(JSON.stringify(data, null, 2)))
-  );
-
-  const res = await fetch(
-    `https://api.github.com/repos/${owner}/${repo}/contents/products.json`,
-    {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        message: "update products",
-        content,
-        sha,
-        branch
-      })
-    }
-  );
-
-  const result = await res.json();
-
-  if (res.ok) {
-    alert("保存成功，已同步 GitHub");
-    loadProducts();
-  } else {
-    alert("保存失败：" + result.message);
-  }
+// GitHub 同步
+async function saveToGithub(){const token=document.getElementById("token").value; if(!token){alert("请输入 GitHub Token"); return;}
+const content=btoa(unescape(encodeURIComponent(JSON.stringify(data,null,2))));
+const res=await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/products.json`,{method:"PUT", headers:{Authorization:`Bearer ${token}`,"Content-Type":"application/json"}, body:JSON.stringify({message:"update products", content, sha, branch})});
+const result=await res.json(); if(res.ok){alert("保存成功，已同步 GitHub"); loadProducts();} else{alert("保存失败："+result.message);}
 }
 
 loadProducts();
