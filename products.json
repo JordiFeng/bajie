@@ -1,0 +1,74 @@
+{
+  "categories": [
+    { "id": "aj1", "name": "乔一" },
+    { "id": "onitsuka", "name": "鬼冢虎" },
+    { "id": "airforce", "name": "空军" },
+    { "id": "dad-shoes", "name": "老爹鞋" },
+    { "id": "running", "name": "跑鞋" },
+    { "id": "skate", "name": "板鞋" },
+    { "id": "lv", "name": "LV" },
+    { "id": "airforce-small", "name": "小空军" },
+    { "id": "puma", "name": "彪马" },
+    { "id": "salomon", "name": "萨洛蒙" },
+    { "id": "gucci", "name": "古驰" },
+    { "id": "shell", "name": "贝壳头" },
+    { "id": "blazer", "name": "开拓者" },
+    { "id": "german-trainer", "name": "德训" },
+    { "id": "vans", "name": "万斯" },
+    { "id": "travis", "name": "倒钩" },
+    { "id": "converse", "name": "匡威" },
+    { "id": "yeezy", "name": "椰子鞋" },
+    { "id": "aj4", "name": "乔四" },
+    { "id": "aj312", "name": "312" },
+    { "id": "mlb", "name": "MLB" },
+    { "id": "aj3", "name": "乔三" },
+    { "id": "ym", "name": "YM" },
+    { "id": "evo", "name": "Evo" },
+    { "id": "bee", "name": "小蜜蜂" },
+    { "id": "dior", "name": "迪奥" },
+    { "id": "loewe", "name": "罗意威" },
+    { "id": "ecco", "name": "爱步" },
+    { "id": "acg", "name": "ACG" }
+  ],
+  "products": {
+    "aj1": [
+      {
+        "id": "p-aj1-1",
+        "name": "芝加哥",
+        "price": 0.1,
+        "image": "/images/product-aj1.png",
+        "modelCode": "AJ1 001",
+        "brandTag": "乔一",
+        "sizeRange": "40-45",
+        "overlay": "乔一 芝加哥 40-45",
+        "desc": "经典芝加哥配色，高帮设计。"
+      }
+    ],
+    "onitsuka": [
+      {
+        "id": "p-oni-1",
+        "name": "黑武士",
+        "price": 0.1,
+        "image": "/images/product-black.png",
+        "modelCode": "DC0777 101",
+        "brandTag": "鬼冢虎",
+        "sizeRange": "36-44",
+        "overlay": "鬼冢虎 黑武士 36-44",
+        "desc": "经典全黑配色，百搭耐脏，尺码 36-44 可选。"
+      }
+    ],
+    "shell": [
+      {
+        "id": "p-shell-1",
+        "name": "金标白",
+        "price": 0.1,
+        "image": "/images/product-shell.png",
+        "modelCode": "SUPER 001",
+        "brandTag": "贝壳头",
+        "sizeRange": "36-44",
+        "overlay": "贝壳头 金标白 36-44",
+        "desc": "三叶草金标，贝壳头经典款。"
+      }
+    ]
+  }
+}

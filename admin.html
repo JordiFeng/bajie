@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>商品后台管理</title>
+  <style>
+    body {
+      font-family: Arial;
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin: 6px 0;
+    }
+    button {
+      padding: 10px 16px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    .product {
+      border: 1px solid #ddd;
+      padding: 12px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+<h2>商品后台管理</h2>
+
+<label>分类</label>
+<select id="category"></select>
+
+<label>商品名称</label>
+<input id="name" />
+
+<label>价格</label>
+<input id="price" type="number" />
+
+<label>图片地址</label>
+<input id="image" />
+
+<label>描述</label>
+<textarea id="desc"></textarea>
+
+<button onclick="addProduct()">添加商品</button>
+<button onclick="downloadJSON()">导出 products.json</button>
+
+<h3>商品列表</h3>
+<div id="list"></div>
+
+<script>
+let data = {
+  categories: [
+    { id: "aj1", name: "乔一" },
+    { id: "onitsuka", name: "鬼冢虎" },
+    { id: "shell", name: "贝壳头" }
+  ],
+  products: {
+    aj1: [],
+    onitsuka: [],
+    shell: []
+  }
+};
+
+function initCategory() {
+  const select = document.getElementById('category');
+  data.categories.forEach(c => {
+    const option = document.createElement('option');
+    option.value = c.id;
+    option.innerText = c.name;
+    select.appendChild(option);
+  });
+}
+
+function addProduct() {
+  const category = document.getElementById('category').value;
+
+  const product = {
+    id: 'p-' + Date.now(),
+    name: document.getElementById('name').value,
+    price: Number(document.getElementById('price').value),
+    image: document.getElementById('image').value,
+    desc: document.getElementById('desc').value
+  };
+
+  if (!data.products[category]) {
+    data.products[category] = [];
+  }
+
+  data.products[category].push(product);
+  renderList();
+}
+
+function deleteProduct(category, index) {
+  data.products[category].splice(index, 1);
+  renderList();
+}
+
+function renderList() {
+  const list = document.getElementById('list');
+  list.innerHTML = '';
+
+  Object.keys(data.products).forEach(category => {
+    data.products[category].forEach((p, index) => {
+      const div = document.createElement('div');
+      div.className = 'product';
+      div.innerHTML = `
+        <strong>${p.name}</strong><br>
+        ¥${p.price}<br>
+        ${p.desc}<br>
+        <button onclick="deleteProduct('${category}', ${index})">删除</button>
+      `;
+      list.appendChild(div);
+    });
+  });
+}
+
+function downloadJSON() {
+  const blob = new Blob(
+    [JSON.stringify(data, null, 2)],
+    { type: 'application/json' }
+  );
+
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'products.json';
+  a.click();
+}
+
+initCategory();
+renderList();
+</script>
+
+</body>
+</html>
