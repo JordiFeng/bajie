@@ -1,90 +1,198 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <title>商品后台管理</title>
-  <style>
-    body {
-      font-family: Arial;
-      max-width: 1000px;
-      margin: 20px auto;
-      padding: 20px;
-    }
-    input, select, textarea {
-      width: 100%;
-      padding: 8px;
-      margin: 6px 0;
-    }
-    button {
-      padding: 10px 16px;
-      margin-top: 10px;
-      cursor: pointer;
-    }
-    .product {
-      border: 1px solid #ddd;
-      padding: 12px;
-      margin: 10px 0;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>商品后台管理</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    max-width: 760px;
+    margin: auto;
+    padding: 16px;
+    background: #f7f7f7;
+  }
+  h2 {
+    text-align: center;
+  }
+  .card {
+    background: white;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  }
+  input, select, textarea, button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+  }
+  button {
+    background: #000;
+    color: white;
+    border: none;
+  }
+  .product {
+    border-bottom: 1px solid #eee;
+    padding: 12px 0;
+  }
+  img {
+    width: 80px;
+    border-radius: 8px;
+  }
+</style>
 </head>
 <body>
 
 <h2>商品后台管理</h2>
 
-<label>分类</label>
-<select id="category"></select>
+<div class="card">
+  <h3>GitHub Token</h3>
+  <input id="token" placeholder="输入 GitHub Token">
+</div>
 
-<label>商品名称</label>
-<input id="name" />
+<div class="card">
+  <h3>添加商品</h3>
 
-<label>价格</label>
-<input id="price" type="number" />
+  <select id="category">
+    <option value="aj1">乔一</option>
+    <option value="onitsuka">鬼冢虎</option>
+    <option value="shell">贝壳头</option>
+    <option value="airforce">空军</option>
+  </select>
 
-<label>图片地址</label>
-<input id="image" />
+  <input id="name" placeholder="商品名称">
+  <input id="price" type="number" placeholder="价格">
+  <textarea id="desc" placeholder="商品描述"></textarea>
+  <input id="imageFile" type="file" accept="image/*">
 
-<label>描述</label>
-<textarea id="desc"></textarea>
+  <button onclick="addProduct()">添加商品</button>
+  <button onclick="saveToGithub()">保存同步 GitHub</button>
+</div>
 
-<button onclick="addProduct()">添加商品</button>
-<button onclick="downloadJSON()">导出 products.json</button>
-
-<h3>商品列表</h3>
-<div id="list"></div>
+<div class="card">
+  <h3>商品列表</h3>
+  <div id="list"></div>
+</div>
 
 <script>
+const owner = "jordifeng";
+const repo = "bajie";
+const branch = "main";
+
+let sha = "";
 let data = {
   categories: [
     { id: "aj1", name: "乔一" },
     { id: "onitsuka", name: "鬼冢虎" },
-    { id: "shell", name: "贝壳头" }
+    { id: "shell", name: "贝壳头" },
+    { id: "airforce", name: "空军" }
   ],
-  products: {
-    aj1: [],
-    onitsuka: [],
-    shell: []
-  }
+  products: {}
 };
 
-function initCategory() {
-  const select = document.getElementById('category');
-  data.categories.forEach(c => {
-    const option = document.createElement('option');
-    option.value = c.id;
-    option.innerText = c.name;
-    select.appendChild(option);
+async function loadProducts() {
+  try {
+    const res = await fetch(
+      `https://api.github.com/repos/${owner}/${repo}/contents/products.json`
+    );
+    const result = await res.json();
+
+    sha = result.sha;
+
+    const content = decodeURIComponent(
+      escape(atob(result.content.replace(/\n/g, "")))
+    );
+
+    data = JSON.parse(content);
+    renderList();
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+function renderList() {
+  const list = document.getElementById("list");
+  list.innerHTML = "";
+
+  Object.keys(data.products).forEach(category => {
+    data.products[category].forEach((item, index) => {
+      const div = document.createElement("div");
+      div.className = "product";
+      div.innerHTML = `
+        <p><strong>${item.name}</strong></p>
+        <p>¥${item.price}</p>
+        <img src="${item.image}" />
+        <p>${item.desc}</p>
+        <button onclick="deleteProduct('${category}', ${index})">删除</button>
+      `;
+      list.appendChild(div);
+    });
   });
 }
 
-function addProduct() {
-  const category = document.getElementById('category').value;
+function deleteProduct(category, index) {
+  data.products[category].splice(index, 1);
+  renderList();
+}
+
+async function uploadImage(file) {
+  const token = document.getElementById("token").value;
+
+  const base64 = await fileToBase64(file);
+  const filename = `images/${Date.now()}-${file.name}`;
+
+  await fetch(
+    `https://api.github.com/repos/${owner}/${repo}/contents/${filename}`,
+    {
+      method: "PUT",
+      headers: {
+        Authorization: `token ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: "upload image",
+        content: base64
+      })
+    }
+  );
+
+  return `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${filename}`;
+}
+
+function fileToBase64(file) {
+  return new Promise(resolve => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      resolve(reader.result.split(",")[1]);
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+async function addProduct() {
+  const category = document.getElementById("category").value;
+  const name = document.getElementById("name").value;
+  const price = Number(document.getElementById("price").value);
+  const desc = document.getElementById("desc").value;
+  const file = document.getElementById("imageFile").files[0];
+
+  let image = "";
+
+  if (file) {
+    image = await uploadImage(file);
+  }
 
   const product = {
-    id: 'p-' + Date.now(),
-    name: document.getElementById('name').value,
-    price: Number(document.getElementById('price').value),
-    image: document.getElementById('image').value,
-    desc: document.getElementById('desc').value
+    id: "p-" + Date.now(),
+    name,
+    price,
+    desc,
+    image
   };
 
   if (!data.products[category]) {
@@ -95,45 +203,34 @@ function addProduct() {
   renderList();
 }
 
-function deleteProduct(category, index) {
-  data.products[category].splice(index, 1);
-  renderList();
-}
+async function saveToGithub() {
+  const token = document.getElementById("token").value;
 
-function renderList() {
-  const list = document.getElementById('list');
-  list.innerHTML = '';
-
-  Object.keys(data.products).forEach(category => {
-    data.products[category].forEach((p, index) => {
-      const div = document.createElement('div');
-      div.className = 'product';
-      div.innerHTML = `
-        <strong>${p.name}</strong><br>
-        ¥${p.price}<br>
-        ${p.desc}<br>
-        <button onclick="deleteProduct('${category}', ${index})">删除</button>
-      `;
-      list.appendChild(div);
-    });
-  });
-}
-
-function downloadJSON() {
-  const blob = new Blob(
-    [JSON.stringify(data, null, 2)],
-    { type: 'application/json' }
+  const content = btoa(
+    unescape(encodeURIComponent(JSON.stringify(data, null, 2)))
   );
 
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'products.json';
-  a.click();
+  await fetch(
+    `https://api.github.com/repos/${owner}/${repo}/contents/products.json`,
+    {
+      method: "PUT",
+      headers: {
+        Authorization: `token ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: "update products",
+        content,
+        sha
+      })
+    }
+  );
+
+  alert("保存成功，已同步 GitHub");
+  loadProducts();
 }
 
-initCategory();
-renderList();
+loadProducts();
 </script>
-
 </body>
 </html>
