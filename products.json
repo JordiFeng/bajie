@@ -1,34 +1,121 @@
 {
   "categories": [
-    { "id": "aj1", "name": "乔一" },
-    { "id": "onitsuka", "name": "鬼冢虎" },
-    { "id": "airforce", "name": "空军" },
-    { "id": "dad-shoes", "name": "老爹鞋" },
-    { "id": "running", "name": "跑鞋" },
-    { "id": "skate", "name": "板鞋" },
-    { "id": "lv", "name": "LV" },
-    { "id": "airforce-small", "name": "小空军" },
-    { "id": "puma", "name": "彪马" },
-    { "id": "salomon", "name": "萨洛蒙" },
-    { "id": "gucci", "name": "古驰" },
-    { "id": "shell", "name": "贝壳头" },
-    { "id": "blazer", "name": "开拓者" },
-    { "id": "german-trainer", "name": "德训" },
-    { "id": "vans", "name": "万斯" },
-    { "id": "travis", "name": "倒钩" },
-    { "id": "converse", "name": "匡威" },
-    { "id": "yeezy", "name": "椰子鞋" },
-    { "id": "aj4", "name": "乔四" },
-    { "id": "aj312", "name": "312" },
-    { "id": "mlb", "name": "MLB" },
-    { "id": "aj3", "name": "乔三" },
-    { "id": "ym", "name": "YM" },
-    { "id": "evo", "name": "Evo" },
-    { "id": "bee", "name": "小蜜蜂" },
-    { "id": "dior", "name": "迪奥" },
-    { "id": "loewe", "name": "罗意威" },
-    { "id": "ecco", "name": "爱步" },
-    { "id": "acg", "name": "ACG" }
+    {
+      "id": "aj1",
+      "name": "乔一"
+    },
+    {
+      "id": "onitsuka",
+      "name": "鬼冢虎"
+    },
+    {
+      "id": "airforce",
+      "name": "空军"
+    },
+    {
+      "id": "dad-shoes",
+      "name": "老爹鞋"
+    },
+    {
+      "id": "running",
+      "name": "跑鞋"
+    },
+    {
+      "id": "skate",
+      "name": "板鞋"
+    },
+    {
+      "id": "lv",
+      "name": "LV"
+    },
+    {
+      "id": "airforce-small",
+      "name": "小空军"
+    },
+    {
+      "id": "puma",
+      "name": "彪马"
+    },
+    {
+      "id": "salomon",
+      "name": "萨洛蒙"
+    },
+    {
+      "id": "gucci",
+      "name": "古驰"
+    },
+    {
+      "id": "shell",
+      "name": "贝壳头"
+    },
+    {
+      "id": "blazer",
+      "name": "开拓者"
+    },
+    {
+      "id": "german-trainer",
+      "name": "德训"
+    },
+    {
+      "id": "vans",
+      "name": "万斯"
+    },
+    {
+      "id": "travis",
+      "name": "倒钩"
+    },
+    {
+      "id": "converse",
+      "name": "匡威"
+    },
+    {
+      "id": "yeezy",
+      "name": "椰子鞋"
+    },
+    {
+      "id": "aj4",
+      "name": "乔四"
+    },
+    {
+      "id": "aj312",
+      "name": "312"
+    },
+    {
+      "id": "mlb",
+      "name": "MLB"
+    },
+    {
+      "id": "aj3",
+      "name": "乔三"
+    },
+    {
+      "id": "ym",
+      "name": "YM"
+    },
+    {
+      "id": "evo",
+      "name": "Evo"
+    },
+    {
+      "id": "bee",
+      "name": "小蜜蜂"
+    },
+    {
+      "id": "dior",
+      "name": "迪奥"
+    },
+    {
+      "id": "loewe",
+      "name": "罗意威"
+    },
+    {
+      "id": "ecco",
+      "name": "爱步"
+    },
+    {
+      "id": "acg",
+      "name": "ACG"
+    }
   ],
   "products": {
     "aj1": [
@@ -42,6 +129,13 @@
         "sizeRange": "40-45",
         "overlay": "乔一 芝加哥 40-45",
         "desc": "经典芝加哥配色，高帮设计。"
+      },
+      {
+        "id": "p-1779100823174",
+        "name": "农夫三拳",
+        "price": 0,
+        "desc": "大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地大萨达撒大声地",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1779100820722-微信图片_2026-04-05_180615_723.jpg"
       }
     ],
     "onitsuka": [
