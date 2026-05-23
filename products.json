@@ -160,6 +160,14 @@
         "overlay": "贝壳头 金标白 36-44",
         "desc": "三叶草金标，贝壳头经典款。"
       }
+    ],
+    "salomon": [
+      {
+        "id": "p-1779521857626",
+        "name": "白灰",
+        "desc": "36-44",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1779521853275-IMG_4145.png"
+      }
     ]
   }
 }
