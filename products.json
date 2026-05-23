@@ -5,10 +5,6 @@
       "name": "乔一"
     },
     {
-      "id": "onitsuka",
-      "name": "鬼冢虎"
-    },
-    {
       "id": "airforce",
       "name": "空军"
     },
@@ -119,21 +115,18 @@
     {
       "id": "c-1779106025681",
       "name": "农夫三拳"
+    },
+    {
+      "id": "c-1779523583218",
+      "name": "鬼冢虎（皮）"
+    },
+    {
+      "id": "c-1779523593862",
+      "name": "鬼冢虎（布）"
     }
   ],
   "products": {
     "aj1": [
-      {
-        "id": "p-aj1-1",
-        "name": "芝加哥",
-        "price": 0.1,
-        "image": "/images/product-aj1.png",
-        "modelCode": "AJ1 001",
-        "brandTag": "乔一",
-        "sizeRange": "40-45",
-        "overlay": "乔一 芝加哥 40-45",
-        "desc": "经典芝加哥配色，高帮设计。"
-      },
       {
         "id": "p-1779523415642",
         "name": "",
@@ -171,32 +164,8 @@
         "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1779523516172-image_1779523145321.jpg"
       }
     ],
-    "onitsuka": [
-      {
-        "id": "p-oni-1",
-        "name": "黑武士",
-        "price": 0.1,
-        "image": "/images/product-black.png",
-        "modelCode": "DC0777 101",
-        "brandTag": "鬼冢虎",
-        "sizeRange": "36-44",
-        "overlay": "鬼冢虎 黑武士 36-44",
-        "desc": "经典全黑配色，百搭耐脏，尺码 36-44 可选。"
-      }
-    ],
-    "shell": [
-      {
-        "id": "p-shell-1",
-        "name": "金标白",
-        "price": 0.1,
-        "image": "/images/product-shell.png",
-        "modelCode": "SUPER 001",
-        "brandTag": "贝壳头",
-        "sizeRange": "36-44",
-        "overlay": "贝壳头 金标白 36-44",
-        "desc": "三叶草金标，贝壳头经典款。"
-      }
-    ],
+    "onitsuka": [],
+    "shell": [],
     "salomon": [
       {
         "id": "p-1779523080662",
