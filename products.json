@@ -1170,6 +1170,38 @@
         "desc": "",
         "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1779551922056-image_1779524831457.jpg"
       }
+    ],
+    "gucci": [
+      {
+        "id": "p-1779552076483",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1779552073720-image_1779524948392.jpg"
+      },
+      {
+        "id": "p-1779552085062",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1779552082056-image_1779524944261.jpg"
+      },
+      {
+        "id": "p-1779552101116",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1779552097667-image_1779524940053.jpg"
+      },
+      {
+        "id": "p-1779552108245",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1779552105995-image_1779524937704.jpg"
+      },
+      {
+        "id": "p-1779552115690",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1779552113313-image_1779524935961.jpg"
+      }
     ]
   }
 }
