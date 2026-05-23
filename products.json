@@ -161,6 +161,13 @@
         "desc": "三叶草金标，贝壳头经典款。"
       }
     ],
-    "salomon": []
+    "salomon": [
+      {
+        "id": "p-1779523080662",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1779523077390-image_1777741998927.jpg"
+      }
+    ]
   }
 }
