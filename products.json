@@ -932,6 +932,68 @@
         "desc": "",
         "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1779527530762-image_1779524798469.jpg"
       }
+    ],
+    "puma": [
+      {
+        "id": "p-1779527564861",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1779527562355-image_1779524801174.jpg"
+      },
+      {
+        "id": "p-1779527574662",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1779527572251-image_1779524803053.jpg"
+      },
+      {
+        "id": "p-1779527586036",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1779527583555-image_1779524806130.jpg"
+      },
+      {
+        "id": "p-1779527596785",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1779527594311-image_1779524809108.jpg"
+      },
+      {
+        "id": "p-1779527605491",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1779527602958-image_1779524810959.jpg"
+      },
+      {
+        "id": "p-1779527614096",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1779527611660-image_1779524814002.jpg"
+      },
+      {
+        "id": "p-1779527626681",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1779527624337-image_1779524815781.jpg"
+      },
+      {
+        "id": "p-1779527635794",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1779527633445-image_1779524818817.jpg"
+      },
+      {
+        "id": "p-1779527647666",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1779527645344-image_1779524820682.jpg"
+      },
+      {
+        "id": "p-1779527668252",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1779527665990-image_1779524822582.jpg"
+      }
     ]
   }
 }
