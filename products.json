@@ -85,32 +85,12 @@
       "name": "乔三"
     },
     {
-      "id": "ym",
-      "name": "YM"
-    },
-    {
-      "id": "evo",
-      "name": "Evo"
-    },
-    {
-      "id": "bee",
-      "name": "小蜜蜂"
-    },
-    {
       "id": "dior",
       "name": "迪奥"
     },
     {
       "id": "loewe",
       "name": "罗意威"
-    },
-    {
-      "id": "ecco",
-      "name": "爱步"
-    },
-    {
-      "id": "acg",
-      "name": "ACG"
     },
     {
       "id": "c-1779523583218",
@@ -135,6 +115,10 @@
     {
       "id": "c-1779551753947",
       "name": "SB"
+    },
+    {
+      "id": "c-1780129900300",
+      "name": "高帮"
     }
   ],
   "products": {
@@ -798,6 +782,30 @@
         "name": "",
         "desc": "",
         "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1780129073372-image_1779587091799.jpg"
+      },
+      {
+        "id": "p-1780129766728",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1780129764358-image_1779586821056.jpg"
+      },
+      {
+        "id": "p-1780129793973",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1780129791454-image_1779586819060.jpg"
+      },
+      {
+        "id": "p-1780129806161",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1780129803184-image_1779586816823.jpg"
+      },
+      {
+        "id": "p-1780129818241",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1780129815843-image_1779586768541.jpg"
       }
     ],
     "onitsuka": [],
