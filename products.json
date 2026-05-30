@@ -2092,6 +2092,20 @@
         "desc": "",
         "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1780128952486-image_1779587231393.jpg"
       }
+    ],
+    "airforce": [
+      {
+        "id": "p-1780128971152",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1780128969100-image_1779587176526.jpg"
+      },
+      {
+        "id": "p-1780128987927",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1780128985805-image_1779587174629.jpg"
+      }
     ]
   }
 }
