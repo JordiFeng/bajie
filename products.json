@@ -123,6 +123,10 @@
     {
       "id": "c-1780160271183",
       "name": "拖鞋"
+    },
+    {
+      "id": "c-1780161300534",
+      "name": "K8"
     }
   ],
   "products": {
@@ -3391,6 +3395,44 @@
         "name": "",
         "desc": "",
         "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1780160324113-image_1779586481929.jpg"
+      }
+    ],
+    "c-1780161300534": [
+      {
+        "id": "p-1780161318425",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1780161315857-image_1780013375963.jpg"
+      },
+      {
+        "id": "p-1780161330763",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1780161328467-image_1780013363067.jpg"
+      },
+      {
+        "id": "p-1780161341271",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1780161338171-image_1780013354958.jpg"
+      },
+      {
+        "id": "p-1780161354406",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1780161352104-image_1780013348318.jpg"
+      },
+      {
+        "id": "p-1780161364243",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1780161361526-image_1780013339599.jpg"
+      },
+      {
+        "id": "p-1780161378837",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1780161376384-image_1780013331652.jpg"
       }
     ]
   }
