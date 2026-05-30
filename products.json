@@ -2301,6 +2301,12 @@
         "name": "",
         "desc": "",
         "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1780161507958-image_1779587495445.jpg"
+      },
+      {
+        "id": "p-1780161562390",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1780161560207-image_1780161546937.jpg"
       }
     ],
     "c-1779551753947": [
@@ -3475,6 +3481,32 @@
         "name": "",
         "desc": "",
         "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1780161463238-image_1780013243947.jpg"
+      }
+    ],
+    "german-trainer": [
+      {
+        "id": "p-1780161704031",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1780161701899-image_1780161688855.jpg"
+      },
+      {
+        "id": "p-1780161712119",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1780161709735-image_1780161686896.jpg"
+      },
+      {
+        "id": "p-1780161720784",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1780161718086-image_1780161684790.jpg"
+      },
+      {
+        "id": "p-1780161728625",
+        "name": "",
+        "desc": "",
+        "image": "https://raw.githubusercontent.com/jordifeng/bajie/main/images/1780161726630-image_1780161681579.jpg"
       }
     ]
   }
